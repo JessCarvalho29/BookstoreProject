@@ -8,9 +8,16 @@
       <p class="text-book-light mt-2">Manage your bookstore inventory</p>
     </div>
 
+    {{#unless currentUser}}
+    <div class="flex flex-col sm:flex-row justify-center gap-4">
+      <a href="/auth/register" class="btn text-book-light btn-lg px-6 py-3 text-lg font-medium">Register</a>
+      <a href="/auth/login" class="btn text-book-light btn-lg px-6 py-3 text-lg font-medium">Sign In</a>
+    </div>
+    {{/unless}}
+
     {{#if currentUser}}
-    <div>
-      <a href="/auth/logout" class="text-book-light mt-2">Logout</a>
+    <div class="flex flex-col sm:flex-row justify-center gap-4">
+      <a href="/auth/logout" class="btn text-book-light btn-lg px-6 py-3 text-lg font-medium">Logout</a>
     </div>
     {{/if}}
   </div>

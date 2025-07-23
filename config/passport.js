@@ -1,4 +1,4 @@
- const LocalStrategy = require('passport-local').Strategy;
+const LocalStrategy = require('passport-local').Strategy;
 const GitHubStrategy = require('passport-github2').Strategy;
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
@@ -8,6 +8,10 @@ module.exports = function(passport) {
     try {
       const user = await User.findOne({ username });
       if (!user) return done(null, false, { message: 'User not found' });
+
+      if (!user.password) {
+        return done(null, false, { message: 'Please set a password for your account.' });
+      }
 
       const isMatch = await bcrypt.compare(password, user.password);
       return isMatch ? done(null, user) : done(null, false, { message: 'Incorrect password' });
@@ -40,7 +44,11 @@ module.exports = function(passport) {
   });
 
   passport.deserializeUser(async (id, done) => {
+    try {
     const user = await User.findById(id);
     done(null, user);
+  } catch (err) {
+    done(err);
+  }
   });
 };

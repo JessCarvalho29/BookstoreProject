@@ -13,7 +13,7 @@ const authRouter = require('./routes/auth');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
-const escapeHtml = require('escape-html');
+const User = require('./models/user');
 
 require('dotenv').config();
 
@@ -64,18 +64,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
-
-passport.deserializeUser(async (id, done) => {
-  try {
-    const user = await User.findById(id);
-    done(null, user);
-  } catch (err) {
-    done(err);
-  }
-});
 
 app.use((req, res, next) => {
   res.locals.success_msg = req.flash('success_msg');

@@ -4,7 +4,7 @@ const Book = require("../models/book");
 
 const { ensureAuthenticated } = require("../middleware/auth");
 
-router.get("/", ensureAuthenticated, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const searchQuery = req.query.search;
     let books;

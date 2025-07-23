@@ -1,0 +1,34 @@
+<div class="bg-white rounded-lg shadow-md p-6 mb-10 text-center">
+  {{#if currentUser}}
+  
+    <h1 class="text-4xl font-bold text-book-dark mb-4">Welcome back, {{currentUser.username}}!</h1>
+    <p class="text-lg text-gray-600 mb-6">Ready to manage your book collection?</p>
+    <a href="/books" class="btn btn-primary btn-lg px-6 py-3 text-lg font-medium">View My Books</a>
+
+  {{else}}
+
+    <h1 class="text-4xl font-bold text-book-dark mb-4">Welcome to Cozy Chapters Corner</h1>
+    <p class="text-lg text-gray-600 mb-8">Your book collection manager</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div class="feature-card bg-book-light p-6 rounded-lg shadow hover:shadow-lg transition duration-200">
+        <h5 class="text-xl font-semibold text-book-dark mb-2">📖 Organize Your Books</h5>
+        <p class="text-gray-600">Keep track of your favorite books in one place</p>
+      </div>
+      <div class="feature-card bg-book-light p-6 rounded-lg shadow hover:shadow-lg transition duration-200">
+        <h5 class="text-xl font-semibold text-book-dark mb-2">🔍 Easy Search</h5>
+        <p class="text-gray-600">Find any book instantly with powerful search</p>
+      </div>
+      <div class="feature-card bg-book-light p-6 rounded-lg shadow hover:shadow-lg transition duration-200">
+        <h5 class="text-xl font-semibold text-book-dark mb-2">🧩 Simple Design</h5>
+        <p class="text-gray-600">Clean and intuitive interface for all users</p>
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row justify-center gap-4">
+      <a href="/auth/register" class="btn btn-success btn-lg px-6 py-3 text-lg font-medium">Register</a>
+      <a href="/auth/login" class="btn btn-primary btn-lg px-6 py-3 text-lg font-medium">Sign In</a>
+    </div>
+
+  {{/if}}
+</div>

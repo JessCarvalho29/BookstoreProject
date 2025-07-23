@@ -4,7 +4,7 @@
 A full-stack web application that manages a bookstore inventory with CRUD functionalities, allowing to Create, Read, Update, and Delete books. 
 Includes authentication with username and password or using GitHub account.
 
-## Live Site: 
+## Live Site: https://bookstore-gx5v.onrender.com/
 
 ## Tech Stack
 

@@ -2,6 +2,24 @@
 
 <h1>Register</h1>
 
+{{#if error_msg}}
+<div class="alert alert-danger" role="alert">
+  {{error_msg}}
+</div>
+{{/if}}
+
+{{#if error}}
+<div class="alert alert-danger" role="alert">
+  {{error}}
+</div>
+{{/if}}
+
+{{#if success_msg}}
+<div class="alert alert-success" role="alert">
+  {{success_msg}}
+</div>
+{{/if}}
+
 <form action="/auth/register" method="POST" class="mt-4 w-1/2">
   <div class="mb-3">
     <label for="username" class="form-label">Username</label>

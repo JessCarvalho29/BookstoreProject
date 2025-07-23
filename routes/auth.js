@@ -7,18 +7,24 @@ const User = require('../models/user');
 router.get('/register', (req, res) => res.render('auth/register'));
 
 router.post('/register', async (req, res) => {
-  const { username, password } = req.body;
+  try {
+    const { username, password } = req.body;
 
-  const existingUser = await User.findOne({ username: username });
-  if (existingUser) {
-      req.flash('error_msg', 'Username is already taken. Please choose another one.');
-      return res.redirect('/auth/register');
-    }
+    const existingUser = await User.findOne({ username: username });
+    if (existingUser) {
+        req.flash('error_msg', 'Username is already taken. Please choose another one.');
+        return res.redirect('/auth/register');
+      }
 
-  const hashedPassword = await bcrypt.hash(password, 10);
-  await User.create({ username, password: hashedPassword });
-  req.flash('success_msg', 'You are now registered! Please log in.');
-  res.redirect('/auth/login');
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await User.create({ username, password: hashedPassword });
+    req.flash('success_msg', 'You are now registered! Please log in.');
+    res.redirect('/auth/login');
+  } catch (err) {
+    console.error(err);
+    req.flash('error_msg', 'An error occurred during registration. Please try again.');
+    res.redirect('/auth/register');
+  }
 });
 
 router.get('/login', (req, res) => res.render('auth/login'));
